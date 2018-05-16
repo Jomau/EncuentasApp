@@ -19,6 +19,7 @@ namespace EncuentasApp
             this.BtnAgregar.Clicked += BtnAgregar_Clicked;
             MessagingCenter.Subscribe<ContentPage, Encuenta>(this, Mensajes.encuestaCompleta, (sender, args) =>
             {
+
                 Panel.Children.Add(new Label()
                 {
                     Text = args.ToString()

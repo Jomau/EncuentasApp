@@ -3,7 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EncuentasApp.EncuestasView"
              Title="Encuentas">
-    <ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:Datos x:Key="datosEncuestas" x:Name="datosEncuestas"></local:Datos>
+            <DataTemplate x:Key="listTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="{Binding Nombre,Mode=TwoWay}"></Label>
+                            <Label Text="{Binding Pais,Mode=TwoWay}"></Label>
+                            <Label Text="{Binding Fecha,StringFormat='{}{0:dd/MMode/yyyy}',Mode=TwoWay}"></Label>
+                        </StackLayout>
+                        <Label Grid.Column="1" Text="{Binding Saldo,StringFormat='{}{0:C}',Mode=TwoWay}" VerticalTextAlignment="Center" TextColor="{Binding Saldo,Converter={StaticResource saldoConvertidor}}"></Label>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content BindingContext="{Source={StaticResource datosEncuestas}}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
